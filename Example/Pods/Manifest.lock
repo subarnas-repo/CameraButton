@@ -1,0 +1,23 @@
+PODS:
+  - CameraButton (0.1.0)
+  - FBSnapshotTestCase (2.1.2):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.2)
+  - FBSnapshotTestCase/Core (2.1.2)
+  - FBSnapshotTestCase/SwiftSupport (2.1.2):
+    - FBSnapshotTestCase/Core
+
+DEPENDENCIES:
+  - CameraButton (from `../`)
+  - FBSnapshotTestCase
+
+EXTERNAL SOURCES:
+  CameraButton:
+    :path: ../
+
+SPEC CHECKSUMS:
+  CameraButton: 41dbd09b9d0a7f9f8d6ac5c2fbf05a0deedaa89f
+  FBSnapshotTestCase: 918c55861356ee83aee7843d759f55a18ff6982b
+
+PODFILE CHECKSUM: f8fa9a5c44237c6c0a86778207af3a999018bff3
+
+COCOAPODS: 1.0.1
