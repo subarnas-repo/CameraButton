@@ -23,7 +23,8 @@ Add `import CameraButton.swift` in your file
 
 ####In Storyboard
 
-In storyboard assign the class to the button that would be used to bring the camera in
+In storyboard assign the class to the button that would be used to show the camera,
+
 and create the outlet for that button 
 
 e.g.
@@ -115,7 +116,7 @@ func setupCameraButton() {
     myCameraButton.delegate = self
 
 }
-
+```
 
 ##Change the options in Menu 
 
