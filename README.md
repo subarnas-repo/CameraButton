@@ -29,14 +29,14 @@ and create the outlet for that button
 
 e.g.
 
-```
+```swift
 @IBOutlet weak var myCameraButton: CameraButton!
 
 ```
 Attach the button to a action 
 e.g.
 
-```
+```swift
 @IBAction func myCameraAction(sender: AnyObject) {
 
     myCameraButton.openCameraOptionMenu()
@@ -52,7 +52,7 @@ In view controller
 
 e.g.
 
-```
+```swift
 
 let cameraButton: CameraButton = CameraButton(frame: CGRectMake(100, 400, 100, 50))
 
@@ -74,7 +74,7 @@ self.view.addSubview(cameraButton) // add to view as subview
 
 ####Setup the camera button 
 
-```
+```swift
 func setupCameraButton() {
 
     // required
@@ -95,7 +95,7 @@ or if you want to use the delgate options to manipulate the image
 add the delegate option with the viewcontroler
 
 
-```
+```swift
 class ViewController: UIViewController, CameraButtonDelegate {
 
     ...
@@ -105,7 +105,7 @@ class ViewController: UIViewController, CameraButtonDelegate {
 
 ```
 
-```
+```swift
 func setupCameraButton() {
 
     // required
@@ -120,7 +120,7 @@ func setupCameraButton() {
 
 ##Change the options in Menu 
 
-```
+```swift
 func changeMenuOptionsForCamera() {
 
     //only camera option will be shown
@@ -141,7 +141,7 @@ func changeMenuOptionsForCamera() {
 
 the delegates
 
-```
+```swift
 /* the selected image can be manipulated even if the target image view is not specified */
 
 func imagePickerDismissed(imagePicked : Bool, withImage : UIImage?) {
@@ -165,8 +165,8 @@ func targetImageDeleted() {
 
 ####Other Useful methods
 
-```
-/*if let selectedImage : UIImage = self.myCameraButton.getSelectedImage() {
+```swift
+if let selectedImage : UIImage = self.myCameraButton.getSelectedImage() {
 
 //do something with the selected image
 
@@ -183,14 +183,14 @@ if let selectedImageDataAsString : String = self.myCameraButton.getImageAsBase64
 
 //do something with the selected selectedImageDataAsString
 
-}*/
+}
 
 ```
 
 #### Other customizable options
 
 
-```
+```swift
 
 //a custom imagepicker which has to be a subclass of UIImagePickerController can be used if necessary
 public lazy var imagePicker : UIImagePickerController = UIImagePickerController()
