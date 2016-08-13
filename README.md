@@ -248,6 +248,16 @@ public var optionMenuList : Array<MenuOptonTypes> = [
     .Camera, .PhotoLibrary, .PhotoAlbum, .DeleteExistingImage
 ]
 
+
+//user can choose to show the option menu popover from other places
+
+public weak var showOptionMenuFromView : UIView?
+
+
+//user can choose to show the option menu popover from bar button item
+
+public weak var showOptionFromBarButtonItem : UIBarButtonItem?
+
 ```
 
 ## Requirements

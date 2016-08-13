@@ -114,7 +114,14 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
         .Camera, .PhotoLibrary, .PhotoAlbum, .DeleteExistingImage
     ]
     
+    //user can choose to show the option menu popover from other places
     
+    public weak var showOptionMenuFromView : UIView?
+    
+    
+    //user can choose to show the option menu popover from bar button item
+    
+    public weak var showOptionFromBarButtonItem : UIBarButtonItem?
     
     
     //setup image picker first
@@ -252,6 +259,24 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
         
         
         if (targetViewController != nil) {
+            
+            if ( self.showOptionMenuFromView != nil || self.showOptionFromBarButtonItem != nil || UIDevice.currentDevice().userInterfaceIdiom == .Pad) {
+                
+                alertController.popoverPresentationController?.sourceView = self.targetViewController!.view
+                
+                if (self.showOptionFromBarButtonItem != nil) {
+                    
+                    alertController.popoverPresentationController?.barButtonItem = self.showOptionFromBarButtonItem!
+                    
+                } else if (self.showOptionMenuFromView == nil) {
+                    
+                    self.showOptionMenuFromView = self
+                    
+                    alertController.popoverPresentationController?.sourceRect = self.showOptionMenuFromView!.frame
+                    
+                }
+                
+            }
             
             self.targetViewController!.presentViewController(alertController, animated: true) {
                
