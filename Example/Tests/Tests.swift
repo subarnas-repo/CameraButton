@@ -1,6 +1,6 @@
 import UIKit
 import XCTest
-import CameraButton
+@testable import CameraButton
 
 class Tests: XCTestCase {
     

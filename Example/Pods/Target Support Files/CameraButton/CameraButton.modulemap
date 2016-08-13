@@ -1,0 +1,6 @@
+framework module CameraButton {
+  umbrella header "CameraButton-umbrella.h"
+
+  export *
+  module * { export * }
+}
