@@ -62,7 +62,7 @@ class ViewController: UIViewController, CameraButtonDelegate {
     
     // MARK: Optional delegate method for camera buttons
     
-    /* the selected image can be maniulated even if the target image view is not specified */
+    /* the selected image can be manipulated even if the target image view is not specified */
     
     func imagePickerDismissed(imagePicked : Bool, withImage : UIImage?) {
         

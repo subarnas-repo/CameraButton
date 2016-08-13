@@ -25,7 +25,7 @@ This is a subclass of UIButton, that will allow to include photo capturing funct
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Subarna Santra' => 'subarna.santra@gmail.com' }
-  s.source           = { :git => 'https://github.com/subarna-santra/CameraButton.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/subarnas-repo/CameraButton.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'

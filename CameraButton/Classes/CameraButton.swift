@@ -55,21 +55,38 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
         
         var notAvailableMessage : String = ""
         
-        
     }
     
-
-    var imagePicker : UIImagePickerController?
+    var currentlySelectedOptionSettings : MenuSettings?
     
-    var imageViewHasImage : Bool = false
+    //a custom imagepicker which has to be a subclass of UIImagePickerController can be used if necessary
+    public lazy var imagePicker : UIImagePickerController = UIImagePickerController()
     
     
+    //a required option, generally this is the view controller where the Camera Button is placed
     public weak var targetViewController : UIViewController?
     
+    
+    //if not provided, a dummy one would be created
     public weak var targetImageView : UIImageView?
+
     
     
-    //settings for camera action
+    //a image name that could be placed in targetImageView after the image has been deleted
+    public var placeHolderImageName : String = ""
+    
+    
+    //if true, indicates the targetImageView contains a image, and the delete option is shown if not otherwise disabled
+    public var imageViewHasImage : Bool = false
+    
+    
+    /**settings for different camera action, 
+     *
+     * can be disabled by setting show = false
+     * if not available a message can be shown
+     * no message would be shown if notAvailableMessage is kept empty
+     *
+     */
     public var cameraMenuSettings : MenuSettings = MenuSettings(type : .Camera, name: "Camera", show: true, allowsEditing : false, presentWithAnimation : true, dismissWithAnimation : true, notAvailableMessage : "Unable to find camera in this device")
     
     
@@ -87,26 +104,24 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
     
     
     
-    
+    //The header of the menu
     public var optinMenuHeaderTitle : String = ""
     
-    //this option should only be used to change the order of availabel options, can also be used to not show an option
     
+    //this option should be used to change the order of availabel options, can also be used to not show an option
     public var optionMenuList : Array<MenuOptonTypes> = [
         
         .Camera, .PhotoLibrary, .PhotoAlbum, .DeleteExistingImage
     ]
     
-    var currentlySelectedOptionSettings : MenuSettings?
+    
     
     
     //setup image picker first
     
     func setupImagePicker() {
         
-        imagePicker = UIImagePickerController()
-        
-        imagePicker!.delegate = self
+        imagePicker.delegate = self
         
     }
     
@@ -126,15 +141,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
         
         // if image picker is not already setup, its set up first
         
-        if (imagePicker == nil) {
-            
-            self.setupImagePicker()
-        }
-        
-        if (imagePicker == nil) {
-            
-            return false;
-        }
+        self.setupImagePicker()
         
         return true;
     }
@@ -259,9 +266,20 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
         
         if (self.imageViewHasImage == true && targetImageView != nil) {
             
+            
             targetImageView?.image = nil
             
             imageViewHasImage = false
+            
+            //place holder image is not considered as an existing image
+            if (!self.placeHolderImageName.isEmpty) {
+                
+                if let placeHolderImage : UIImage = UIImage(named: self.placeHolderImageName) {
+                    
+                    targetImageView?.image = placeHolderImage
+                }
+            }
+            
             
             self.delegate?.targetImageDeleted?()
             
@@ -282,11 +300,11 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
                     
                     self.currentlySelectedOptionSettings = settings
                     
-                    imagePicker!.allowsEditing = settings.allowsEditing
+                    imagePicker.allowsEditing = settings.allowsEditing
                     
-                    imagePicker!.sourceType = .Camera
+                    imagePicker.sourceType = .Camera
                     
-                    targetViewController!.presentViewController(imagePicker!, animated: settings.presentWithAnimation, completion: nil)
+                    targetViewController!.presentViewController(imagePicker, animated: settings.presentWithAnimation, completion: nil)
                 }
                 
             } else {
@@ -309,11 +327,11 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
                     
                     self.currentlySelectedOptionSettings = settings
                     
-                    imagePicker!.allowsEditing = settings.allowsEditing
+                    imagePicker.allowsEditing = settings.allowsEditing
                     
-                    imagePicker!.sourceType = .PhotoLibrary
+                    imagePicker.sourceType = .PhotoLibrary
                     
-                    targetViewController!.presentViewController(imagePicker!, animated: settings.presentWithAnimation, completion: nil)
+                    targetViewController!.presentViewController(imagePicker, animated: settings.presentWithAnimation, completion: nil)
                 }
                 
             } else {
@@ -339,11 +357,11 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
                     
                     self.currentlySelectedOptionSettings = settings
                     
-                    imagePicker!.allowsEditing = settings.allowsEditing
+                    imagePicker.allowsEditing = settings.allowsEditing
                     
-                    imagePicker!.sourceType = .SavedPhotosAlbum
+                    imagePicker.sourceType = .SavedPhotosAlbum
                     
-                    targetViewController!.presentViewController(imagePicker!, animated: settings.presentWithAnimation, completion: nil)
+                    targetViewController!.presentViewController(imagePicker, animated: settings.presentWithAnimation, completion: nil)
                 }
                 
             } else {
