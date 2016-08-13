@@ -262,7 +262,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
     
     /*if an image exists in the given target image view that has been selected from photo picker its deleted*/
     
-    func deleteExistingImage(withSettings settings : MenuSettings) {
+    public func deleteExistingImage(withSettings settings : MenuSettings) {
         
         if (self.imageViewHasImage == true && targetImageView != nil) {
             
@@ -289,7 +289,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
     
     //opens camera, if available
     
-    func openCamera(withSettings settings : MenuSettings) {
+    public func openCamera(withSettings settings : MenuSettings) {
         
         
         if (settings.type == .Camera) {
@@ -317,7 +317,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
     
     
     //opens photo library, if available
-    func openPhotoLibary(withSettings settings : MenuSettings) {
+    public func openPhotoLibary(withSettings settings : MenuSettings) {
         
         if (settings.type == .PhotoLibrary) {
             
@@ -346,7 +346,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
     
     
     //opens photo album
-    func openPhotoAlbum(withSettings settings : MenuSettings) {
+    public func openPhotoAlbum(withSettings settings : MenuSettings) {
         
         
         if (settings.type == .PhotoAlbum) {
@@ -373,7 +373,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
     }
     
     
-    func showAlertMessage(message : String, title : String = "" ) {
+    public func showAlertMessage(message : String, title : String = "" ) {
         
         
         // show the alert, if target view controller is there
@@ -389,7 +389,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
     }
     
     //if target image view is not already supplied, a new one is created
-    func getTargetImageView()->UIImageView? {
+    public func getTargetImageView()->UIImageView? {
         
         if (targetImageView == nil) {
             
@@ -492,7 +492,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
     }
     
     //dismiss picker view
-    func dismissImagePicker(cancelled cancelled: Bool, imagePicked : Bool) {
+    public func dismissImagePicker(cancelled cancelled: Bool, imagePicked : Bool) {
         
         if (targetViewController != nil) {
             
