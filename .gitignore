@@ -24,6 +24,7 @@
 *.sdf
 *.pyc
 *.xml
+*.xcuserdatad
 ipch/
 obj/
 [Bb]in
