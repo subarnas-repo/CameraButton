@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'CameraButton'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of CameraButton.'
+  s.summary          = 'A subclass of UIButton that can be used to integrate camera on any app.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,13 +18,13 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+This is a subclass of UIButton, that will allow to include photo capturing functionality in any app as easy as subclassing a button and changing a couple of configuration
                        DESC
 
-  s.homepage         = 'https://github.com/<GITHUB_USERNAME>/CameraButton'
+  s.homepage         = 'https://github.com/subarna-santra/CameraButton.git'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'subarna-santra' => 'subarna.santra@gmail.com' }
+  s.author           = { 'Subarna Santra' => 'subarna.santra@gmail.com' }
   s.source           = { :git => 'https://github.com/<GITHUB_USERNAME>/CameraButton.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
