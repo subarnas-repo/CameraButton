@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'CameraButton_Example' do
+  pod 'CameraButton', :path => '../'
+
+  target 'CameraButton_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase'
+  end
+end
