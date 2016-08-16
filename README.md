@@ -1,6 +1,6 @@
 # CameraButton
 
-CameraButton is a subclass of UIButton, that will allow to include photo capturing functionality in any app as easy as asigning the class to the you wish to show camera options button and changing a couple of configuration
+CameraButton is a subclass of UIButton, that will allow to include photo capturing functionality in any app as easyly as asigning the class to the you wish to show camera options button and changing a couple of configuration
 
 ##Installation
 
