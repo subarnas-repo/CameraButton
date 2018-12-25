@@ -65,6 +65,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
         case PhotoLibrary
         case PhotoAlbum
         case DeleteExistingImage
+        case Cancel
         
     }
     
@@ -129,6 +130,8 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
      * no message would be shown if notAvailableMessage is kept empty
      *
      */
+    
+    
     public var cameraMenuSettings : MenuSettings = MenuSettings(type : .Camera, name: "Camera", show: true, allowsEditing : false, presentWithAnimation : true, dismissWithAnimation : true, notAvailableMessage : "Unable to find camera in this device")
     
     
@@ -141,8 +144,10 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
     
     
     ///the allowsEditing, prsentWithAnimation and dismissWithAnimation, notAvailableMessage does not really effect this menu
-    
     public var deleteMenuSettings : MenuSettings = MenuSettings(type : .DeleteExistingImage, name: "Delete", show: true, allowsEditing : false, presentWithAnimation : true, dismissWithAnimation : true, notAvailableMessage : "")
+    
+    ///settings for cancel action
+    public var cancelMenuSettings : MenuSettings = MenuSettings(type : .Cancel, name: "Cancel", show: true, allowsEditing : false, presentWithAnimation : true, dismissWithAnimation : true, notAvailableMessage : "")
     
     
     
@@ -300,6 +305,21 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
                     //added to the list
                     alertController.addAction(deleteImageAction)
                 }
+                
+            case .Cancel:
+                
+                //check settings
+                if (self.cancelMenuSettings.show == false) {
+                    
+                    continue
+                }
+                
+                ///cancel action to cancel the camera option menu
+                let cancelAction = UIAlertAction(title: self.cancelMenuSettings.name, style: .cancel) { (action) in
+                }
+                
+                /// cancel action is added to the list
+                alertController.addAction(cancelAction)
             }
         }
     }
@@ -319,21 +339,16 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
             return;
         }
         
-        let alertController = UIAlertController(title: nil, message: self.optinMenuHeaderTitle, preferredStyle: .actionSheet)
+        self.optionMenuList.append(.Cancel)
         
+        let alertController = UIAlertController(title: nil, message: self.optinMenuHeaderTitle, preferredStyle: .actionSheet)
         
         ///add the option menus
         self.createCameraOptionMenu(alertController: alertController);
         
-        ///cancel action to cancel the camera option menu
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-        }
-        
-        /// cancel action is added to the list
-        alertController.addAction(cancelAction)
         
         //if the target view controller is avialble
-        if (targetViewController != nil) {
+        if let givenViewController = targetViewController {
             
             // checks to show where the menu is to be shown from ( IMPORTANT FOR IPAD)
             if ( self.showOptionMenuFromView != nil || self.showOptionFromBarButtonItem != nil || UIDevice.current.userInterfaceIdiom == .pad) {
@@ -359,9 +374,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
                 
             }
             /// the option list is shown
-            self.targetViewController!.present(alertController, animated: true) {
-               
-            }
+            givenViewController.present(alertController, animated: true) { }
         }
         
     }

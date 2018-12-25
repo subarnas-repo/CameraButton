@@ -43,7 +43,7 @@ class ViewController: UIViewController, CameraButtonDelegate {
         //optional
         myCameraButton.targetImageView = self.myImageView
         
-        myCameraButton.optinMenuHeaderTitle = "Camera Options"
+        //myCameraButton.optinMenuHeaderTitle = "Camera Options"
         
     }
     
