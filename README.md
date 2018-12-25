@@ -261,7 +261,7 @@ public weak var showOptionFromBarButtonItem : UIBarButtonItem?
 ```
 
 ## Requirements
-Requires Swift2.0 and atleast iOS 7.0
+Requires Swift4.2 and atleast iOS 9.0
 
 ## Features
 - Highly customizable
