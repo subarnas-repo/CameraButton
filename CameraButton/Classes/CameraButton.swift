@@ -19,12 +19,12 @@ import UIKit
     /**
          Optional delegate method to know if the image is selected and to get the selected image
     */
-    optional func imagePickerDismissed(imagePicked : Bool, withImage : UIImage?)
+    @objc optional func imagePickerDismissed(imagePicked : Bool, withImage : UIImage?)
     
     /**
      Optional delegate method to know if the existing image is deleted
      */
-    optional func targetImageDeleted()
+    @objc optional func targetImageDeleted()
     
 }
 
@@ -109,7 +109,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
     
     
     ///if not provided, a dummy one would be created
-    public weak var targetImageView : UIImageView?
+    public var targetImageView : UIImageView?
 
     
     
@@ -206,7 +206,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
          - alertController: Alert view to show the menu
      */
     
-    func createCameraOptionMenu(alertController alertController : UIAlertController) {
+    func createCameraOptionMenu(alertController : UIAlertController) {
         
         for (currentOption) in self.optionMenuList {
             
@@ -223,7 +223,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
                 }
                 
                 //attach action to the menu
-                let cameraAction = UIAlertAction(title: self.cameraMenuSettings.name, style: .Default) { (action) in
+                let cameraAction = UIAlertAction(title: self.cameraMenuSettings.name, style: .default) { (action) in
                     
                     
                     //action to open camera
@@ -245,7 +245,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
                 }
                 
                 //attach action to the menu
-                let photoLibraryAction = UIAlertAction(title: self.photoLibraryMenuSettings.name, style: .Default) { (action) in
+                let photoLibraryAction = UIAlertAction(title: self.photoLibraryMenuSettings.name, style: .default) { (action) in
                     
                     //action to open photo library
                     self.openPhotoLibary(withSettings: self.photoLibraryMenuSettings)
@@ -266,7 +266,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
                 }
                 
                 
-                let photoAlbumAction = UIAlertAction(title: self.photoAlbumMenuSettings.name, style: .Default) { (action) in
+                let photoAlbumAction = UIAlertAction(title: self.photoAlbumMenuSettings.name, style: .default) { (action) in
                     
                     //action to open photo album
                     self.openPhotoAlbum(withSettings: self.photoAlbumMenuSettings)
@@ -291,7 +291,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
                     
                     
                     
-                    let deleteImageAction = UIAlertAction(title: self.deleteMenuSettings.name, style: .Default) { (action) in
+                    let deleteImageAction = UIAlertAction(title: self.deleteMenuSettings.name, style: .default) { (action) in
                         
                         //action to delete the existing image
                         self.deleteExistingImage(withSettings: self.deleteMenuSettings)
@@ -319,18 +319,16 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
             return;
         }
         
-        let alertController = UIAlertController(title: nil, message: self.optinMenuHeaderTitle, preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: nil, message: self.optinMenuHeaderTitle, preferredStyle: .actionSheet)
         
         
         ///add the option menus
-        
         self.createCameraOptionMenu(alertController: alertController);
         
         ///cancel action to cancel the camera option menu
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-            
-            
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
         }
+        
         /// cancel action is added to the list
         alertController.addAction(cancelAction)
         
@@ -338,8 +336,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
         if (targetViewController != nil) {
             
             // checks to show where the menu is to be shown from ( IMPORTANT FOR IPAD)
-            
-            if ( self.showOptionMenuFromView != nil || self.showOptionFromBarButtonItem != nil || UIDevice.currentDevice().userInterfaceIdiom == .Pad) {
+            if ( self.showOptionMenuFromView != nil || self.showOptionFromBarButtonItem != nil || UIDevice.current.userInterfaceIdiom == .pad) {
                 
                 alertController.popoverPresentationController?.sourceView = self.targetViewController!.view
                 
@@ -362,7 +359,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
                 
             }
             /// the option list is shown
-            self.targetViewController!.presentViewController(alertController, animated: true) {
+            self.targetViewController!.present(alertController, animated: true) {
                
             }
         }
@@ -421,7 +418,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
             
             
             //if camer available in device
-            if UIImagePickerController.isSourceTypeAvailable(.Camera){
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
                 
                 // if the image picker is setup properly
                 if (checkSettings() == true) {
@@ -436,17 +433,17 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
                     
                     
                     //source type is camera
-                    imagePicker.sourceType = .Camera
+                    imagePicker.sourceType = .camera
                     
                     
                     //show the camera to user ( with or without animation depending on the menu settings)
-                    targetViewController!.presentViewController(imagePicker, animated: settings.presentWithAnimation, completion: nil)
+                    targetViewController!.present(imagePicker, animated: settings.presentWithAnimation, completion: nil)
                 }
                 
             } else {
                 
                 //shows the alert message ( if the notAvailableMessage is given)
-                self.showAlertMessage(settings.notAvailableMessage)
+                self.showAlertMessage(message: settings.notAvailableMessage)
             }
         }
     }
@@ -465,7 +462,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
             
             
             //if the photo library is available
-            if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary){
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
                 
                 if (checkSettings() == true) {
                     
@@ -477,16 +474,16 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
                     
                     
                     //source type is photo library
-                    imagePicker.sourceType = .PhotoLibrary
+                    imagePicker.sourceType = .photoLibrary
                     
                     //show the camera to user ( with or without animation depending on the menu settings)
-                    targetViewController!.presentViewController(imagePicker, animated: settings.presentWithAnimation, completion: nil)
+                    targetViewController!.present(imagePicker, animated: settings.presentWithAnimation, completion: nil)
                 }
                 
             } else {
                 
                 //shows the alert message ( if the notAvailableMessage is given)
-                self.showAlertMessage(settings.notAvailableMessage)
+                self.showAlertMessage(message: settings.notAvailableMessage)
             }
         }
     }
@@ -504,7 +501,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
         //if the photo album is available
         if (settings.type == .PhotoAlbum) {
             
-            if UIImagePickerController.isSourceTypeAvailable(.SavedPhotosAlbum){
+            if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
                 
                 if (checkSettings() == true) {
                     
@@ -515,16 +512,16 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
                     imagePicker.allowsEditing = settings.allowsEditing
                     
                     //source type is photo album
-                    imagePicker.sourceType = .SavedPhotosAlbum
+                    imagePicker.sourceType = .savedPhotosAlbum
                     
                     //show the camera to user ( with or without animation depending on the menu settings)
-                    targetViewController!.presentViewController(imagePicker, animated: settings.presentWithAnimation, completion: nil)
+                    targetViewController!.present(imagePicker, animated: settings.presentWithAnimation, completion: nil)
                 }
                 
             } else {
                 
                 //shows the alert message ( if the notAvailableMessage is given)
-                self.showAlertMessage(settings.notAvailableMessage)
+                self.showAlertMessage(message: settings.notAvailableMessage)
             }
         }
     }
@@ -545,13 +542,13 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
             
             
             //alert view controller is created with the given message and title
-            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
             
             //dismiss action is added to the view
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             
             //message is shown to the user
-            self.targetViewController!.presentViewController(alert, animated: true, completion: nil)
+            self.targetViewController!.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -605,26 +602,15 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
          - Returns: the existing image as NSData
     */
     
-    public func getSelectedImageAsData(type type : ImageDataType, compressionFactor : CGFloat = 1.0)-> NSData? {
+    public func getSelectedImageAsData(type : ImageDataType, compressionFactor : CGFloat = 1.0)-> Data? {
         
-        if (self.imageViewHasImage == true && self.targetImageView != nil) {
+        if self.imageViewHasImage == true, let selectedImage = self.targetImageView?.image {
             
-            if let selectedImage = self.targetImageView?.image {
+            if (type == .JPEG) {
+                return selectedImage.jpegData(compressionQuality: compressionFactor)
                 
-                if (type == .JPEG) {
-                    
-                    if let imageData: NSData = UIImageJPEGRepresentation(selectedImage, compressionFactor) {
-                        
-                        return imageData
-                    }
-                    
-                } else if (type == .PNG) {
-                    
-                    if let imageData: NSData = UIImagePNGRepresentation(selectedImage) {
-                        
-                        return imageData
-                    }
-                }
+            } else if (type == .PNG) {
+                return selectedImage.pngData()
             }
         }
         
@@ -644,17 +630,13 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
      - Returns: the existing image as as base64 encoded string
      */
     
-    public func getImageAsBase64EncodedString(type type : ImageDataType, compressionFactor : CGFloat = 1.0) -> String? {
+    public func getImageAsBase64EncodedString(type : ImageDataType, compressionFactor : CGFloat = 1.0) -> String? {
         
         //existing image is converted to image data
         if let imageData = self.getSelectedImageAsData(type: type, compressionFactor: compressionFactor) {
             
-            
             //image data converted to the base64 encoded string
-            if let strBase64:String = imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength) {
-                
-                return strBase64;
-            }
+            return imageData.base64EncodedString(options: .lineLength64Characters)
         }
         
         return nil
@@ -670,10 +652,9 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
      * calls the delegate method for indicating image picker is dismissed after image selection
      */
     
-    public func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+     
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             
             ///get the target image view
             if let imageView = self.getTargetImageView() {
@@ -686,7 +667,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
                 self.imageViewHasImage = true
                 
                 // the delegate method for indicating image picker is dismissed after image selection
-                self.delegate?.imagePickerDismissed?(true, withImage: pickedImage)
+                self.delegate?.imagePickerDismissed?(imagePicked: true, withImage: pickedImage)
                 
             }
         }
@@ -701,10 +682,10 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
      *
      * calls the delegate method for indicating image picker cancelled by user is implemented
      */
-    public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         
          // the delegate method for indicating image picker is dismissed without image selection
-        self.delegate?.imagePickerDismissed?(false, withImage: nil)
+        self.delegate?.imagePickerDismissed?(imagePicked: false, withImage: nil)
         
         ///dismiss the image picker
         self.dismissImagePicker(cancelled : true, imagePicked:  false);
@@ -720,7 +701,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
      
      - Returns: None.
      */
-    public func dismissImagePicker(cancelled cancelled: Bool, imagePicked : Bool) {
+    public func dismissImagePicker(cancelled: Bool, imagePicked : Bool) {
         
         if (targetViewController != nil) {
             
@@ -736,7 +717,7 @@ public class CameraButton: UIButton, UIImagePickerControllerDelegate, UINavigati
             
             
             ///dismiss image picker
-            targetViewController!.dismissViewControllerAnimated(withAnimation, completion: nil)
+            targetViewController!.dismiss(animated: withAnimation, completion: nil)
         }
     }
    

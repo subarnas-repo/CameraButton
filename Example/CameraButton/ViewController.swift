@@ -11,8 +11,8 @@ import CameraButton
 
 class ViewController: UIViewController, CameraButtonDelegate {
     
+   // @IBOutlet weak var myImageView: UIImageView!
     @IBOutlet weak var myImageView: UIImageView!
-    
     
     @IBOutlet weak var myCameraButton: CameraButton!
     
@@ -105,11 +105,8 @@ class ViewController: UIViewController, CameraButtonDelegate {
         }*/
     }
     
-    
-    
     // MARK: Camera action
-    @IBAction func myCameraAction(sender: AnyObject) {
-        
+    @IBAction func myCameraAction(_ sender: Any) {
         myCameraButton.openCameraOptionMenu()
     }
 }

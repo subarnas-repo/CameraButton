@@ -1,9 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -15,25 +18,25 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tET-F1-SkZ">
-                                <rect key="frame" x="20" y="40" width="280" height="357"/>
-                                <color key="backgroundColor" red="0.73683478174985217" green="0.65889444187517787" blue="1" alpha="0.14624889184397163" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="20" y="40" width="335" height="527"/>
+                                <color key="backgroundColor" red="0.73683478174985217" green="0.65889444187517787" blue="1" alpha="0.14624889184397163" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hsf-7A-lWO" customClass="CameraButton" customModule="CameraButton">
-                                <rect key="frame" x="20" y="417" width="280" height="43"/>
-                                <color key="backgroundColor" red="0.73683478174985217" green="0.65889444187517787" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="20" y="587" width="335" height="60"/>
+                                <color key="backgroundColor" red="0.73683478174985217" green="0.65889444187517787" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Click Me :)">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="myCameraAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="O1u-Qq-syQ"/>
+                                    <action selector="myCameraAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3DN-pK-Ad4"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="hsf-7A-lWO" secondAttribute="trailing" constant="20" id="Bvp-bn-hbr"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="hsf-7A-lWO" secondAttribute="bottom" constant="20" id="F7w-ot-I5X"/>
@@ -45,10 +48,9 @@
                             <constraint firstItem="hsf-7A-lWO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="jhM-K6-Sh8"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="myCameraButton" destination="hsf-7A-lWO" id="P0U-0r-eeS"/>
-                        <outlet property="myImageView" destination="tET-F1-SkZ" id="9E1-gc-LGj"/>
+                        <outlet property="myCameraButton" destination="hsf-7A-lWO" id="4yT-nT-54Y"/>
+                        <outlet property="myImageView" destination="tET-F1-SkZ" id="ptG-Nw-kEi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
